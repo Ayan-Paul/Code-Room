@@ -1,0 +1,131 @@
+:root {
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.86);
+}
+html,
+body {
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+  height: 100% !important;
+  background-color: rgba(232, 233, 239, 1);
+}
+
+#logo {
+  display: block;
+  width: 100px;
+  margin: 0 auto;
+}
+
+#form-container {
+  width: 400px;
+  box-shadow: var(--shadow);
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon-user {
+  width: 40px;
+  height: 40px;
+  background: #8d448b;
+  border-radius: 50%;
+  font-size: 16px;
+  margin: 0 10px;
+}
+.icon-user-text {
+    color: #8d448b; 
+    font-weight: bold;
+}
+
+.heading-bg-color {
+  background-color: #66347F; 
+  color: #fff;
+}
+
+/* CANVAS */
+.canvas-nav{
+  width: auto;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  transition: opacity .5s;
+  background:linear-gradient(to right, #565081, #B06AB3);
+  padding: 10px;
+}
+
+.canvas-nav div, button, input{
+  margin: 5px;
+}
+.canvas-nav:hover{
+  cursor: pointer;
+}
+
+.canvas-nav buttton:hover{
+  cursor: pointer;
+}
+.canvas-clr{
+  height: 35px;
+  width: 35px;
+  background-color: blue;
+  border-radius: 50%;
+  border: 3px solid white;
+  transition: transform .5s;
+}
+.canvas-clr:hover{
+  transform: scale(1.2);
+}
+.canvas-clr:nth-child(1){
+  background-color: #000;
+}
+.canvas-clr:nth-child(2){
+  background-color: red;
+}
+.canvas-clr:nth-child(3){
+  background-color: orange;
+}
+.canvas-clr:nth-child(4){
+  background-color: blue;
+}
+.canvas-clr:nth-child(5){
+  background-color: purple;
+}
+.canvas-clr:nth-child(6){
+  background-color: yellowgreen;
+}
+.canvas-clr:nth-child(7){
+  background-color: yellow;
+}
+.canvas-clr:nth-child(8){
+  background-color: #fff;
+}
+
+.canvas-save{
+  background-color: #0f65d4;
+}
+.canvas-nav input[type="color"] {
+  width: 60px;
+  height: 40px;
+}
+.canvas-nav #ageOutputId{
+  color: white;
+  font-weight: bold;
+  font-size: 15pt;
+}
+.canvas-nav #ageInputId {
+  background: linear-gradient(to right, #626370 0%, #023969 100%);
+  height: 7px;
+  outline: none;
+  cursor: ew-resize;
+  border-radius: 5px;
+  border: 3px solid white;
+  accent-color: white;
+}
+.canvas-nav .emoji{
+  font-size: 40px;
+  padding-bottom: 10px;
+}

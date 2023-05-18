@@ -1,0 +1,197 @@
+{% extends 'collab_editor/base.html' %} {% load static %} {% block content %}
+
+<main>
+  <!-- NAVBAR -->
+  <section id="top-navbar">
+    <nav class="navbar navbar-light bg-light">
+        <ul class="navbar-nav d-flex flex-row justify-items-center align-items-center">
+            <a class="navbar-brand" href="#">codeRoom</a>
+          <li class="nav-item">
+              <h5 class="m-1 font-weight-bold" style="color: #64367F">Room Name: <span id="room-name" style="color: #8d448b">{{room_name}}</span></h5>
+            
+          </li>
+        </ul>
+        
+        
+        <ul class="navbar-nav d-flex flex-row  justify-items-center align-items-center">
+            <li class="nav-item">
+                <button id="editor-canvas" type="button" class="btn btn-success" value="editor">Canvas</button>
+            </li>
+            <li class="nav-item mx-2" id="mic-btn" >
+                <button type="button" class="btn btn-info">Mute</button>
+            </li>
+            <li class="" id="leave-btn">
+                <button type="button" class="btn btn-danger">Leave</button>
+
+            </li>
+        </ul>
+
+    </nav>
+      
+
+  </section>
+
+  <!-- EDITOR -->
+  <section id="section-editor">
+    <div class="container-fluid">
+        <div class="row" class="mx-0 my-0">
+            <!-- Editor -->
+            <div id="main-editor" class="col-md-9 col-lg-8 col-sm-12 p-0" >
+                <!-- Toolbar -->
+                <div class="toolbar d-flex p-1 px-3 justify-content-between " style="min-height: 40px; height: 6.2vh ; background-color: #37306B;">
+                    <div class="my-auto">
+                        <button onclick="runCode();" class="btn mr-2 font-weight-bold btn-info" >Run</button>
+                        <button onclick="saveCode();" class="btn btn-success font-weight-bold">Save</button>
+                    </div>
+                    
+                    <div class="form-group d-flex my-auto">
+                        <label for="selected-language" class="text-white mr-2 my-auto h5" >Language </label>
+                        <select class="form-control" id="selected-language" class="input"
+                                onchange="changeLanguage (this);"> 
+                            <option value="python" 
+                                selected="selected"> 
+                                Python3
+                            </option> 
+                            <option value="c">C</option> 
+                            <option value="cpp">C++11</option> 
+                            <option value="java">Java</option> 
+                        </select> 
+                    </div>
+                    <div class="form-group d-flex my-auto">
+                        <label for="selected-theme" class="text-white mr-2 my-auto h5" >Theme </label>
+                        <select class="form-control" id="selected-theme" class="input"
+                                onchange="changeTheme (this);"> 
+                            <option value="eclipse" 
+                                selected="selected"> 
+                                Eclipse
+                            </option> 
+                            <option value="xcode">XCode</option> 
+                            <option value="dracula">Dracula</option> 
+                            <option value="monokai">Monokai</option> 
+                            <option value="twilight">Twilight</option> 
+                        </select> 
+                    </div>
+                    <div class="form-group d-flex my-auto">
+                        <label for="selected-font" class="text-white mr-2 my-auto h5 text-nowrap" >Font Size</label>
+                        <select class="form-control" id="selected-font" class="input"
+                                onchange="changeFontSize (this);"> 
+                            <option value="12">12</option> 
+                            <option value="14">14</option> 
+                            <option value="16" selected="selected">16</option> 
+                            <option value="20">20</option> 
+                            <option value="22">22</option> 
+                            <option value="24">24</option> 
+                        </select> 
+                    </div>
+                
+                </div>
+                <!-- Main editor -->
+                <div id="editor" style="height: 72vh;"><span id="predifined-code"></span>
+                </div>
+                <div class="">
+                    <div class="container-fluid">
+                        <div class="row" class="mx-0 my-0">
+                            
+                            <div class="col-md-8 bg-dark p-2" style="height: 15vh; overflow-y:auto;" >
+                                <strong><p class="text-white h5">Output</p></strong>
+                                <p id="code-output" class="text-white"></p>
+                            </div>
+
+                            <div class="col-md-4 p-2" style="height: 15vh; background: #ddd;" >
+                                <div class="form-group my-0">
+                                    <p class="h5">Input</p>
+                                    <textarea autocomplete="off" class="form-control my-2" id="editor-input" type="text" placeholder="Write your Input here" rows="2" style="overflow-y:auto;" /></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <!-- CANVAS -->
+            <div id="main-canvas" class="col-md-9 col-lg-8 col-sm-12 p-0">
+                <div class="canvas-nav">
+                    <div id="canvas-clr-black" class="canvas-clr" data-clr="#000"></div>
+                    <div id="canvas-clr-red" class="canvas-clr" data-clr="red"></div>
+                    <div id="canvas-clr-orange" class="canvas-clr" data-clr="orange"></div>
+                    <div id="canvas-clr-blue" class="canvas-clr" data-clr="blue"></div>
+                    <div id="canvas-clr-purple" class="canvas-clr" data-clr="purple"></div>
+                    <div id="canvas-clr-yellowgreen" class="canvas-clr" data-clr="yellowgreen"></div>
+                    <div id="canvas-clr-yellow" class="canvas-clr" data-clr="yellow"></div>
+                    <div id="canvas-clr-white" class="canvas-clr" data-clr="#fff"></div>
+                    <button id="canvas-eraser" class="btn btn-info" style="white-space: nowrap;">Select Eraser</button>
+                    <button id="canvas-clear" class="btn btn-warning">Clear</button>
+                    <button id="canvas-save" class="btn btn-success">Save</button>
+                    <input type="color" id="canvas-bg-color" value="#FFFFFF">
+                    <input type="range" name="ageInputName" id="ageInputId" value="5" min="1" max="9" oninput="ageOutputId.value = ageInputId.value">
+                    <output id="ageOutputId">5</output>
+                </div>
+                {% comment %} <div style="display: block"> {% endcomment %}
+                    {% comment %} <canvas id="canvas" style="height: 86.5vh; width:100%; display: flex; flex: 1"></canvas> {% endcomment %}
+
+                {% comment %} </div> {% endcomment %}
+            
+            <div id="sketch-holder"
+                style="height: 86vh; width: 100%; overflow: hidden;">
+            </div>
+            </div>
+    
+    
+            <!-- Layout with chat + canvas -->
+            <div class="col-md-3 col-lg-4 col-sm-12 p-0">
+                <!-- Chat -->
+                <div id="current-users" class="mx-2 mb-2" style="min-height: 300px; !important; height: 41vh; background-color: #f8f9fd;">
+                    <h4 class="py-3 text-center heading-bg-color" >Joined Users <span id="current-joined-peoples"></span></h4>
+                    <div class="" style="height: 32vh; overflow-y:auto;">
+                        <div class="mx-4 m-2">
+                            <ul class="list-group" id="joined-users">
+                                                      
+                                {% comment %} <li class="list-group-item my-1 d-flex align-items-center"><div class="icon-user d-flex align-items-center justify-content-center">
+                                    <i class="fa fa-user-o text-light"></i>
+                                </div><span class="icon-user-text">John doe</span></li>
+                                 {% endcomment %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="current-users" class="m-2" style="min-height: 300px !important; background-color: #f8f9fd;">
+                    <h4 class="py-3 text-center heading-bg-color">Chat</h4>
+                    <div class="mx-3 p-2">
+                        <div class="">
+                                    <div id="chat-text"
+                                        style="height: 27vh; min-height: 100px !important; overflow: auto !important; word-wrap: break-word; background-color: #fff;"
+                                        class="p-2 border">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea autocomplete="off" class="form-control my-2" id="chat-input" type="text" placeholder="Write your message. (Press Shift+Enter to send)" rows="2" /></textarea>
+                                        <input type="button" class="btn btn-info btn-md btn-block" id="submit" value="Send">
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+    
+        </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="" style="background: #37306b">
+
+    <div class="footer-copyright text-center text-light py-3">&copy; 2023 Copyright: All rights are reserved by Ayan Paul </div>
+
+  </footer>
+</main>
+
+<script>
+    const userName = "{{request.user.first_name}}"
+    const csrfToken = '{{ csrf_token }}';
+</script>
+<script type="text/javascript" src="{% static 'js/editor.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/canvas.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.16.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/streams.js' %}"></script>
+{% endblock content %}
+
+

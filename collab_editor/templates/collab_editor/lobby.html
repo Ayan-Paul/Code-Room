@@ -1,0 +1,48 @@
+{% extends 'collab_editor/base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'styles/login.css' %}" />
+
+<main>
+    <!-- <section id="form-container"> -->        
+        <section class="ftco-section d-flex align-items-center" style="height: 100vh;">
+            <div class="container">
+                <div class="row justify-content-center align-middle">
+                    <div class="col-md-6 col-lg-5">
+                        <div class="login-wrap p-4 p-md-5">
+                      <div class="icon d-flex align-items-center justify-content-center">
+                          <span class="fa fa-user-o"></span>
+                      </div>
+                      <h3 class="text-center mb-4">Welcome to codeRoom</h3>
+                      <p id="err" class="text-center"></p>
+                <form action="" method="POST" class="login-form" id="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control rounded-left" id="username" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control rounded-left" id="room" name="room" placeholder="Room name" required>
+                    </div>
+                    <div class="form-group d-flex">
+                      <input type="password" class="form-control rounded-left" id="password" name="password" placeholder="Room Password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary rounded submit p-3 px-5" style="font-size:20px">Join Room</button>
+                    </div>
+                  </form>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+ 
+    <!-- </section> -->
+</main>
+
+<script type="text/javascript">
+  const csrfToken = '{{ csrf_token }}';
+</script>
+<script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+
+{% endblock content %}
