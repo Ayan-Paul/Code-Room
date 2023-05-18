@@ -13,11 +13,11 @@ https://code-room-4.onrender.com
 
 
 # Screenshots
-![login](https://github.com/Ayan-Paul/CodeRoom/blob/main/screenshots/1.png)
+![login](https://github.com/Ayan-Paul/Code-Room/blob/main/screenshots/1.png)
 
-![editor](https://github.com/Ayan-Paul/CodeRoom/blob/main/screenshots/2.png)
+![editor](https://github.com/Ayan-Paul/Code-Room/blob/main/screenshots/2.png)
 
-![canvas](https://github.com/Ayan-Paul/CodeRoom/blob/main/screenshots/3.png)
+![canvas](https://github.com/Ayan-Paul/Code-Room/blob/main/screenshots/3.png)
 
 # Setting up Locally
 1. Install Python 3.10
